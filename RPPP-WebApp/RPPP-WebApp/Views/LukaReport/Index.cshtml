@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Luka izvještaji";
+}
+<h3>Izvještaj u PDF (jednostavni tablični)</h3>
+<ul>
+    <li>
+        <a target="_blank" asp-action="Autoceste">Popis autocesta</a>
+        @*<a target="_blank" asp-action="@nameof(Firma.Mvc.Controllers.ReportController.Drzave)">Popis svih država</a>*@
+        @*<a target="_blank" href="@Url.Action("Drzave")">Popis svih država</a>*@
+    </li>
+    <li>
+        <a target="_blank" asp-action="Koncesionari">Popis koncesionara</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="Dionice">Popis dionica</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="NaplatnePostaje">Popis naplatnih postaja</a>
+    </li>
+</ul>
+
+<h3>Izvještaj u PDF (master-detail)</h3>
+<ul>
+   
+    <li>
+      <a target="_blank" asp-action="MDAutoceste">Master-detail (autocesta - dionica)</a>
+    </li>
+    
+</ul>
+
+<h3>Izvještaj u Excel (jednostavni)</h3>
+<ul>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleAutocesta">Excel autocesta jednostavni</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleKoncesionar">Excel koncesionari jednostavni</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleDionice">Excel dionice jednostavni</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleNaplatnePostaje">Excel naplatne postaje jednostavni</a>
+    </li>
+</ul>
+
+
+<h3>Izvještaj u Excel (složeni)</h3>
+<ul>
+    <li>
+        <a target="_blank" asp-action="ExcelComplexAutoceste">Excel autoceste složeni</a>
+    </li>
+</ul>

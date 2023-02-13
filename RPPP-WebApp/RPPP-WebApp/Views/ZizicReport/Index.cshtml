@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Zizic izvještaji";
+}
+<h3>Izvještaj u PDF (jednostavni tablični)</h3>
+<ul>
+  <li>
+    <a target="_blank" asp-action="Odmoriste">Popis svih odmorista</a>
+  </li>
+  <li>
+    <a target="_blank" asp-action="Dionice">Popis dionica autoceste</a>
+  </li>
+  <li>
+    <a target="_blank" asp-action="PopratniSadrzaji">Popratni Sadrzaji</a>
+  </li>
+  <li>
+    <a target="_blank" asp-action="VrstePopratnih">Vrste popratnih sadrzaja</a>
+  </li>
+</ul>
+
+<h3>Izvještaj u PDF (master-detail)</h3>
+<ul>
+    <li>
+        <a target="_blank" asp-action="MDOdmoriste">Master-detail odmoriste</a>
+    </li>
+</ul>
+
+<h3>Izvještaj u Excel (jednostavni)</h3>
+<ul>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleOdmorista">Excel odmorista jednostavni</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleDionice">Excel dionice jednostavni</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleSadrzaji">Excel popratni sadrzaji jednostavni</a>
+    </li>
+    <li>
+        <a target="_blank" asp-action="ExcelSimpleVrstePopratnih">Excel vrste popratnih sadrzaja jednostavni</a>
+    </li>
+</ul>
+
+<h3>Izvještaj u Excel (složeni)</h3>
+<ul>
+    <li>
+        <a target="_blank" asp-action="ExcelComplexOdmorista">Excel odmorista složeni</a>
+    </li>
+</ul>

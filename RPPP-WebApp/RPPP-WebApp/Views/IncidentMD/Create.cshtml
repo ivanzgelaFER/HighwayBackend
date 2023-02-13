@@ -1,0 +1,56 @@
+﻿@model Incident
+
+@{
+    ViewBag.Title = "Novi incident";
+}
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Opis"></label>
+        <div><span asp-validation-for="Opis" class="text-danger"></span></div>
+        <input asp-for="Opis" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Datum"></label>
+        <div><span asp-validation-for="Datum" class="text-danger"></span></div>
+        <input asp-for="Datum" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="MeteoroloskiUvjeti"></label>
+        <div><span asp-validation-for="MeteoroloskiUvjeti" class="text-danger"></span></div>
+        <input asp-for="MeteoroloskiUvjeti" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="StanjeNaCesti"></label>
+        <div><span asp-validation-for="StanjeNaCesti" class="text-danger"></span></div>
+        <input asp-for="StanjeNaCesti" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Prohodnost"></label>
+        <div><span asp-validation-for="Prohodnost" class="text-danger"></span></div>
+        <input asp-for="Prohodnost" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Dionica"></label>
+        <div><span asp-validation-for="DionicaId" class="text-danger"></span></div>
+        <select class="form-control" asp-for="DionicaId" asp-items="ViewBag.Incidenti2">
+            <option disabled selected value="">Odaberite dionicu</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="VrstaIncidenta"></label>
+        <div><span asp-validation-for="VrstaIncidentaId" class="text-danger"></span></div>
+        <select class="form-control" asp-for="VrstaIncidentaId" asp-items="ViewBag.Incidenti1">
+            <option disabled selected value="">Odaberite vrstu incidenta</option>
+        </select>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

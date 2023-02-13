@@ -1,0 +1,38 @@
+﻿main {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.logo-icon {
+  height: 30px;
+}
+
+.pagebox {
+    max-width: 45px;
+}
+
+.validation-summary-errors { font-weight: bold; color:#a94442;}
+.validation-summary-valid { display: none;}
+.input-validation-error{
+    border-color:red;
+}
+
+.pagebox::selection {
+    background-color: grey;
+}
+
+.malaslika {
+    height: 40px;
+}
+
+.table-column-font-size {
+    font-size: 14px;
+}
+
+.body-container {
+    margin-bottom: 20px;
+}
+
+.navbar-width {
+    min-width: 25em;
+}

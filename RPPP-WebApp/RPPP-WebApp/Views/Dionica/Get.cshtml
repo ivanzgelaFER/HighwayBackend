@@ -1,0 +1,29 @@
+﻿@model DionicaViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.Naziv</td>
+    <td class="text-left">@Model.UlaznaPostaja</td>
+    <td class="text-left">@Model.IzlaznaPostaja</td>
+    <td class="text-left">@Model.Autocesta</td>
+    <td class="text-left">@Model.BrojTraka</td> 
+    <td class="text-left"><input type="checkbox" @(Model.ZaustavnaTraka ? "checked" : "") disabled />  
+    <td class="text-left"><input type="checkbox" @(Model.DozvolaTeretnimVozilima ? "checked" : "") disabled />
+    <td class="text-left"><input type="checkbox" @(Model.OtvorenZaProlaz ? "checked" : "") disabled />
+    <td class="text-left">@Model.GodinaOtvaranja</td>
+    <td class="text-left">@Model.Duljina</td>
+    <td class="text-left">@Model.OgranicenjeBrzine</td>
+
+    <td>
+        <a class="btn btn-sm edit"
+           hx-get="@Url.Action(nameof(DionicaController.Edit), new { id = Model.Id })"
+           title="Ažuriraj"><i class="fas fa-edit"></i></a>
+    </td>
+    <td>
+        <button class="btn btn-sm btn-danger"
+                hx-confirm="Obrisati autocestu?"
+                hx-delete="@Url.Action(nameof(DionicaController.Delete), new { id = Model.Id })"
+                title="Obriši">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>

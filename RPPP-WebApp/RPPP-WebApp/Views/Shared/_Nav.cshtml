@@ -1,0 +1,219 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" asp-action="Index" asp-controller="Home">RPPP Homework - Najjaca Grupa 04</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="Home">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Ivan Zgela
+                </a>
+                <ul class="dropdown-menu navbar-width" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="CestovniObjekt">
+                            Cestovni objekt (master)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Dionica">
+                            Dionica (sifrarnik mastera)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="OdrzavanjeObjekta">
+                            Odrzavanje objekta (detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="VrstaOdrzavanja">
+                            Vrsta odrzavanja (sifrarnik detail-a)
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="IvanMasterDetail">
+                            Cestovni objekt - Odrzavanje objekta (master-detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="IvanReport">
+                            Ivan izvjestaji (pdf, excel)
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Luka Slugecic
+                </a>
+                <ul class="dropdown-menu navbar-width" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Autocesta">
+                            Autocesta (jednostavni prikaz master)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Koncesionar">
+                            Koncesionar (jednostavni prikaz sifrarnik mastera)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Dionica">
+                            Dionica (jednostavni prikaz detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="NaplatnaPostaja">
+                            Naplatna Postaja (jednostavni prikaz sifrarnik detaila)
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="AutocestaMD">
+                            Autocesta (master-detail prikaz)
+                        </a>
+                    </li>
+                        <li>
+                            <a class="nav-link"
+                               asp-action="Index" asp-controller="LukaReport">
+                                Luka izvjestaji (pdf, excel)
+                            </a>
+                        </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Karlo Zizic
+                </a>
+                <ul class="dropdown-menu navbar-width" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Odmoriste">
+                            Odmoriste (master)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Dionica">
+                            Dionica (sifrarnik mastera)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="PopratniSadrzaj">
+                            PopratniSadrzaj (detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="VrstaPopratnog">
+                            VrstaPopratnogSadrzaja (sifrarnik detail-a)
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="OdmoristeMD">
+                            Odmoriste (Master - Detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                             asp-action="Index" asp-controller="ZizicReport">
+                                Zizic izvjestaji (pdf, excel)
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filip Siktar
+                </a>
+                <ul class="dropdown-menu navbar-width" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Incident">
+                            Incident (jednostavni prikaz master)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="VrstaIncidenta">
+                            Vrsta Incidenta (jednostavni prikaz sifrarnik mastera)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="Reakcija">
+                            Reakcija (jednostavni prikaz detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="VrstaReakcije">
+                            Vrsta Reakcije (jednostavni prikaz sifrarnik detaila)
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="IncidentMD">
+                            Incident (master-detail prikaz)
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Josip Kovac
+                </a>
+                <ul class="dropdown-menu navbar-width" aria-labelledby="navbarDropdown">
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="NaplatnaKucica">
+                            Naplatna kucica (jednostavni prikaz master)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="VrstaNaplate">
+                            Vrsta naplate (jednostavni prikaz sifrarnik mastera)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="ProlazakVozila">
+                            Prolazak vozila (jednostavni prikaz detail)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link"
+                           asp-action="Index" asp-controller="KategorijaVozila">
+                            Kategorija vozila (jednostavni prikaz sifrarnik detaila)
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="Index" asp-controller="ViewLog">Pregled log datoteke</a>
+            </li>
+        </ul>
+    </div>
+  </div>
+</nav>

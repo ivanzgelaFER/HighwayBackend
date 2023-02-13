@@ -1,0 +1,60 @@
+﻿@model Dionica
+
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-start">
+        <input asp-for="Naziv" class="form-control" />
+    </td>
+    <td class="text-start">
+        <select class="form-select" asp-for="UlaznaPostajaId" asp-items="ViewBag.UlaznePostaje">
+        </select>
+    </td>
+    <td class="text-start">
+        <select class="form-select" asp-for="IzlaznaPostajaId" asp-items="ViewBag.IzlaznePostaje">
+        </select>
+    </td>
+    <td class="text-start">
+        <select class="form-select" asp-for="AutocestaId" asp-items="ViewBag.Autoceste">
+        </select>
+    </td>
+    <td class="text-start">
+        <input asp-for="BrojTraka" class="form-control" />
+    </td>
+    <td class="text-start">
+        <input asp-for="ZaustavnaTraka" class="checkbox" />
+    </td>
+    <td class="text-start">
+        <input asp-for="DozvolaTeretnimVozilima" class="checkbox" />
+    </td>
+    <td class="text-start">
+        <input asp-for="OtvorenZaProlaz" class="checkbox" />
+    </td>
+    <td class="text-start">
+        <input asp-for="GodinaOtvaranja" class="form-control" />
+    </td>
+    <td class="text-start">
+        <input asp-for="Duljina" class="form-control" />
+    </td>
+    <td class="text-start">
+        <input asp-for="OgranicenjeBrzine" class="form-control" />
+    </td>
+    
+    <td>
+        <input type="hidden" asp-for="Id" />
+        <button hx-include="closest tr"
+                hx-post="@Url.Action(nameof(DionicaController.Edit))"
+                class="btn btn-sm btn-primary" title="Spremi">
+            <i class="fas fa-save"></i>
+        </button>
+    </td>
+    <td>
+        <button class="btn btn-sm cancel"
+                hx-get="@Url.Action(nameof(DionicaController.Get), new { id = Model.Id })"
+                title="Odustani">
+            <i class="fas fa-undo-alt"></i>
+        </button>
+    </td>
+    <td>
+        <div asp-validation-summary="All"></div>
+    </td>
+</tr>

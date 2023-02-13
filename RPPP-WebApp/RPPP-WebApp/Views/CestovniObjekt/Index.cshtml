@@ -1,0 +1,100 @@
+﻿@model RPPP_WebApp.ViewModels.CestovniObjektiViewModel
+
+@{
+  ViewBag.Title = "Cestovni objekti";
+  var viewdata = new ViewDataDictionary(ViewData) { { "PagingInfo", Model.PagingInfo } };
+}
+
+<h2>Cestovni objekti</h2>
+
+<a asp-action="Create">Kreiraj novi cestovni objekt</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu" class="float-end"></pager>
+
+<table class="table table-striped">
+  <thead>
+     <tr>
+        @{
+            string[] nazivi = { "Naziv", "Dionica", "Tip objekta", "Ograničenje brzine", "Broj traka", "Duljina objekta","Zaustavni trak", "Dozvola teretnim vozilima", 
+                                "Zanimljivost", "Godina izgradnje", "Pješačka staza", "Naplata prijelaza"};
+            for (int i = 1; i <= nazivi.Length; i++)
+            {
+                <th>
+                    <a
+                asp-route-sort="@i"
+                asp-route-page="@Model.PagingInfo.CurrentPage"
+                asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)"
+                class="table-column-font-size">
+                        @nazivi[i - 1]
+                    </a>
+                </th>
+            }
+        }
+        <th></th>
+        <th></th>
+    <tr>
+  </thead>
+    <tbody>
+        @foreach (var cestovniObjekt in Model.CestovniObjekt)
+        {
+            <tr hx-swap="outerHTML" hx-target="this">
+                <td class="text-left">@cestovniObjekt.Naziv</td>
+                <td class="text-left">@cestovniObjekt.Dionica.Naziv</td>
+                <td class="text-left">@cestovniObjekt.TipObjekta</td>
+                <td class="text-left">@cestovniObjekt.OgranicenjeBrzine</td>
+                <td class="text-left">@cestovniObjekt.BrojPrometnihTraka</td>
+                <td class="text-left">@cestovniObjekt.DuljinaObjekta</td>
+                <td class="text-left">
+                    <input type="checkbox" @(cestovniObjekt.ZaustavniTrak ? "checked" : "") disabled />
+                </td>
+                <td class="text-left">
+                    <input type="checkbox" @(cestovniObjekt.DozvolaTeretnimVozilima ?? false ? "checked" : "") @(cestovniObjekt.DozvolaTeretnimVozilima == null ? "hidden" : "") disabled />
+                </td>
+                <td class="text-left">@cestovniObjekt.Zanimljivost</td>
+                <td class="text-left">@cestovniObjekt.GodinaIzgradnje</td>
+                <td class="text-left">
+                    <input type="checkbox" @(cestovniObjekt.PjesackaStaza ?? false ? "checked" : "") @(cestovniObjekt.PjesackaStaza == null ? "hidden" : "") disabled />
+                </td>
+                <td class="text-left">
+                    <input type="checkbox" @(cestovniObjekt.NaplataPrijelaza ?? false ? "checked" : "") @(cestovniObjekt.NaplataPrijelaza == null ? "hidden" : "") disabled />
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@cestovniObjekt.Id"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                       class="btn btn-sm" 
+                       title="Ažuriraj">
+                       <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger"
+                        hx-confirm="Obrisati cestovni objekt?"
+                        hx-delete="@Url.Action(nameof(CestovniObjektController.Delete), new { id = cestovniObjekt.Id })"
+                        title="Obriši">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+        document.body.addEventListener("htmx:responseError", function (evt) {
+            toastr["error"](evt.detail.error);
+        })
+    </script>
+}

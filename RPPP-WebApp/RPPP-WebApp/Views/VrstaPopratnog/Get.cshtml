@@ -1,0 +1,19 @@
+﻿@model VrstaPopratnogViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+  <td class="text-left">@Model.NazivVrstePopratnog</td>
+  <td>
+    <a class="btn btn-sm"
+       hx-get="@Url.Action(nameof(VrstaPopratnogController.Edit), new { id = Model.IdVrstePopratnog })"
+       title="Ažuriraj"><i class="fas fa-edit"></i></a>
+  </td>
+  <td>   
+      <button class="btn btn-sm btn-danger"
+              hx-confirm="Obrisati vrstu popratnog sadržaja?"
+              hx-delete="@Url.Action(nameof(VrstaPopratnogController.Delete), new { id = Model.IdVrstePopratnog })"
+              title="Obriši">
+        <i class="fas fa-trash-alt"></i>
+      </button> 
+  </td>
+</tr>
+  

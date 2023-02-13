@@ -1,0 +1,48 @@
+@model ProlazakVozila
+
+@{
+    ViewBag.Title = "Novi prolazak vozila";
+}
+
+<h2>Unos novog prolaska vozila</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="RegistracijskaOznaka" class="form-label"></label>
+        <input asp-for="RegistracijskaOznaka" class="form-control" />
+        <div class="form-text"><span asp-validation-for="RegistracijskaOznaka" class="text-danger"></span></div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Kategorija vozila</label>
+        <select class="form-control" asp-for="KategorijaVozilaId" asp-items="ViewBag.KategorijaVozila">
+            <option disabled selected value="">Odaberite kategoriju vozila</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="KategorijaVozilaId" class="text-danger"></span></div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Naplatna kucica</label>
+        <select class="form-control" asp-for="NaplatnaKucicaId" asp-items="ViewBag.NaplatnaKucica">
+            <option disabled selected value="">Odaberite naplatnu kucicu</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="NaplatnaKucicaId" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="VrijemeProlaska" class="form-label"></label>
+        <input asp-for="VrijemeProlaska" class="form-control" type="datetime-local"/>
+        <div class="form-text"><span asp-validation-for="VrijemeProlaska" class="text-danger"></span></div>
+    </div>
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

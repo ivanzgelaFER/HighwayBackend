@@ -1,0 +1,53 @@
+﻿@model RPPP_WebApp.Models.VrstaOdrzavanja
+
+@{
+    ViewBag.Title = "Ažuriranje vrste održavanja";
+}
+
+<form asp-route-id="@Model.Id"
+      asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div class="form-group">
+        <label class="form-label">Naziv</label>
+        <input asp-for="Naziv" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Naziv" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Izvanredno</label>
+        <select asp-for="Izvanredno" class="dropdown">
+            <option value="">Ne znam</option>
+            <option value="true">Da</option>
+            <option value="false">Ne</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="Izvanredno" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Preventivno</label>
+        <select asp-for="Preventivno" class="dropdown">
+            <option value="">Ne znam</option>
+            <option value="true">Da</option>
+            <option value="false">Ne</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="Preventivno" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Periodničnost</label>
+        <input asp-for="Periodicnost" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Periodicnost" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Godišnje doba</label>
+        <input asp-for="GodisnjeDoba" class="form-control" />
+        <div class="form-text"><span asp-validation-for="GodisnjeDoba" class="text-danger"></span></div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Ažuriraj</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani</a>
+    </div>
+</form>

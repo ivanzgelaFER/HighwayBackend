@@ -1,0 +1,68 @@
+﻿@model RPPP_WebApp.ViewModels.IncidentiViewModel
+
+@{
+    ViewBag.Title = "Incidenti";
+}
+
+<h2>Popis incidenata</h2>
+
+<a asp-action="Create">Unos novog incidenta</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-end">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Opis", "Datum", "MeteoroloskiUvjeti", "StanjeNaCesti", "Prohodnost", "Dionica", "VrstaIncidenta", "Reakcije"};
+                for (int i = 1; i <= nazivi.Length; i++) {
+                    <th>
+                        <a asp-route-sort="@i"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)">
+                            @nazivi[i - 1]
+                        </a>
+                    </th>
+                }
+            }
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var incident in Model.Incidenti) {
+            <tr>
+                <td class="text-left">
+                    <a asp-action="Show"
+                   asp-route-id="@incident.Id"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-sort="@Model.PagingInfo.Sort"
+                   asp-route-ascending="@Model.PagingInfo.Ascending">
+                        @incident.Opis
+                    </a>
+                </td>
+                <td class="text-left">@incident.Datum</td>
+                <td class="text-left">@incident.MeteoroloskiUvjeti</td>
+                <td class="text-left">@incident.StanjeNaCesti</td>
+                <td class="text-left">@incident.Prohodnost</td>
+                <td class="text-left">@incident.Dionica</td>
+                <td class="text-left">@incident.VrstaIncidenta</td>
+                <td class="text-left">@incident.NaziviReakcija</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+    </script>
+}

@@ -1,0 +1,75 @@
+﻿@model RPPP_WebApp.Models.Dionica
+
+@{
+    ViewBag.Title = "Nova dionica";
+}
+
+<h2>Unos nove dionice</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">Naziv</label>
+        <input asp-for="Naziv" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Naziv" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Autocesta</label>
+        <select class="form-control" asp-for="AutocestaId" asp-items="ViewBag.Autoceste">
+            <option disabled selected value="">Odaberite autocestu</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="AutocestaId" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ulazna postaja</label>
+        <select class="form-control" asp-for="UlaznaPostajaId" asp-items="ViewBag.UlaznePostaje">
+            <option disabled selected value="">Odaberite ulaznu postaju</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="UlaznaPostajaId" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Izlazna postaja</label>
+        <select class="form-control" asp-for="IzlaznaPostajaId" asp-items="ViewBag.IzlaznePostaje">
+            <option disabled selected value="">Odaberite izlaznu postaju</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="IzlaznaPostajaId" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Broj traka</label>
+        <input asp-for="BrojTraka" class="form-control" />
+        <div class="form-text"><span asp-validation-for="BrojTraka" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Zaustavni trak</label>
+        <input asp-for="ZaustavnaTraka" class="checkbox" />
+        <div class="form-text"><span asp-validation-for="ZaustavnaTraka" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Dozvoljeno teretnim vozilima</label>
+        <input asp-for="DozvolaTeretnimVozilima" class="checkbox" />
+        <div class="form-text"><span asp-validation-for="DozvolaTeretnimVozilima" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Otvoreno za prolaz</label>
+        <input asp-for="OtvorenZaProlaz" class="checkbox" />
+        <div class="form-text"><span asp-validation-for="OtvorenZaProlaz" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Godina otvaranja</label>
+        <input asp-for="GodinaOtvaranja" class="form-control" />
+        <div class="form-text"><span asp-validation-for="GodinaOtvaranja" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Duljina</label>
+        <input asp-for="Duljina" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Duljina" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Ograničenje brzine</label>
+        <input asp-for="OgranicenjeBrzine" class="form-control" />
+        <div class="form-text"><span asp-validation-for="OgranicenjeBrzine" class="text-danger"></span></div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-secondary">Odustani</a>
+    </div>
+</form>

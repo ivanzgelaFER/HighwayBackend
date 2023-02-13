@@ -1,0 +1,79 @@
+﻿@model RPPP_WebApp.ViewModels.ProlaziVozilaViewModel
+
+@{
+    ViewBag.Title = "Prolazi vozila";
+}
+
+<h2>Popis prolaza vozila</h2>
+
+<a asp-action="Create">Unos novog prolaza vozila</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-end">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Id", "Registracijska oznaka", "Kategorija vozila", "Vrijeme prolaska", "Naplatna kucica" };
+                for (int i = 1; i <= nazivi.Length; i++)
+                {
+                    <th>
+                        <a asp-route-sort="@i"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)"
+                   class="table-column-font-size text-left">
+                            @nazivi[i - 1]
+                        </a>
+                    </th>
+                }
+            }
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var prolazakVozila in Model.ProlaziVozila)
+        {
+            <tr hx-swap="outerHTML" hx-target="this">
+                <td class="text-left">@prolazakVozila.Id</td>
+                <td class="text-left">@prolazakVozila.RegistracijskaOznaka</td>
+                <td class="text-left">@prolazakVozila?.KategorijaVozila?.Naziv ?: ""</td>
+                <td class="text-left">@prolazakVozila.VrijemeProlaska</td>
+                <td class="text-left">@prolazakVozila.NaplatnaKucicaId</td>
+                <td>
+                    <a asp-action="Edit"
+                   asp-route-id="@prolazakVozila.Id"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-sort="@Model.PagingInfo.Sort"
+                   asp-route-ascending="@Model.PagingInfo.Ascending"
+                   class="btn btn-sm"
+                   title="Ažuriraj">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger"
+                        hx-confirm="Obrisati vrstu naplate?"
+                        hx-delete="@Url.Action(nameof(VrstaNaplateController.Delete), new { id = prolazakVozila.Id })"
+                        title="Obriši">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+    </script>
+}

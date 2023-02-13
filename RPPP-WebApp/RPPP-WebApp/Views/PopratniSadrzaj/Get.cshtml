@@ -1,0 +1,27 @@
+﻿@model PopratniSadrzajViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.NazivPopratnogSadrzaja</td>
+    <td class="text-left">@Model.Odmoriste</td>
+    <td class="text-left">@Model.RadnimDanomOd</td>
+    <td class="text-left">@Model.RadninDanomDo</td>
+    <td class="text-left">@Model.VikendimaDo</td>
+    <td class="text-left">@Model.VikendimaOd</td>
+    <td class="text-left">@Model.VrstaPopratnog</td>
+    
+
+  
+  <td>
+    <a class="btn btn-sm"
+       hx-get="@Url.Action(nameof(PopratniSadrzajController.Edit), new { id = Model.IdPopratnogSadrzaja })"
+       title="Ažuriraj"><i class="fas fa-edit"></i></a>
+  </td>
+  <td>   
+      <button class="btn btn-sm btn-danger"
+              hx-confirm="Obrisati odmorište?"
+              hx-delete="@Url.Action(nameof(PopratniSadrzajController.Delete), new { id = Model.IdPopratnogSadrzaja })"
+              title="Obriši">
+        <i class="fas fa-trash-alt"></i>
+      </button> 
+  </td>
+</tr>

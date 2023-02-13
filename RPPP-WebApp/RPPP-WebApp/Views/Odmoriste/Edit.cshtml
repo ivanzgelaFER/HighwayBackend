@@ -1,0 +1,39 @@
+﻿@model Odmoriste
+
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-start">
+        <input asp-for="Naziv" class="form-control" />
+    </td>
+    <td class="text-start">
+        <select class="form-select" asp-for="DionicaId" asp-items="ViewBag.Odmorista">
+        </select>
+    </td>
+    <td class="text-start">
+        <input asp-for="KoordinataX" class="form-control" />
+    </td>
+    <td class="text-start">
+        <input asp-for="KoordinataY" class="form-control" />
+    </td>
+    <td class="text-start">
+        <input asp-for="GodinaOtvaranja" class="form-control" />
+    </td>
+    <td>
+        <input type="hidden" asp-for="Id" />
+        <button hx-include="closest tr"
+                hx-post="@Url.Action(nameof(OdmoristeController.Edit))"
+                class="btn btn-sm btn-primary" title="Spremi">
+            <i class="fas fa-save"></i>
+        </button>
+    </td>
+    <td>
+        <button class="btn btn-sm cancel"
+                hx-get="@Url.Action(nameof(OdmoristeController.Get), new { id = Model.Id })"
+                title="Odustani">
+            <i class="fas fa-undo-alt"></i>
+        </button>
+    </td>
+    <td>
+        <div asp-validation-summary="All"></div>
+    </td>
+</tr>

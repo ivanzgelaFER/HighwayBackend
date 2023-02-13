@@ -1,0 +1,57 @@
+﻿@model RPPP_WebApp.ViewModels.PopratniSadrzajiViewModel
+
+@{
+    ViewBag.Title = "Popratni sadržaji";
+}
+
+<h2>Popis Popratnih sadržaja</h2>
+
+<a asp-action="Create">Unos novog Popratnog sadržaja</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-end">
+</pager>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Naziv","Odmorište", "RadnimDanomOd", "RadnimDanomDo", "VikendimaDo", "VikendimaOd", "Vrsta Popratnog sadržaja" };
+                for (int i = 1; i <= nazivi.Length; i++)
+                {
+                    <th>
+                        <a asp-route-sort="@i"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)">
+                            @nazivi[i - 1]
+                        </a>
+                    </th>
+                }
+            }
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var popratniSadrzaj in Model.PopratniSadrzaji)
+        {
+            <partial name="Get" model="popratniSadrzaj" />
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+        document.body.addEventListener("htmx:responseError", function (evt) {
+            toastr["error"](evt.detail.error);
+        })
+    </script>
+}

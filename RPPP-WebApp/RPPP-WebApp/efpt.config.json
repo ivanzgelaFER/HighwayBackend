@@ -1,0 +1,117 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "RPPP04Context",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "RPPP_WebApp",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[Autocesta]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[CestovniObjekt]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Dionica]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Incident]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Kamera]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[KategorijaVozila]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Koncesionar]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NaplatnaKucica]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[NaplatnaPostaja]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Odmoriste]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[OdrzavanjeObjekta]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PopratniSadrzaj]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ProlazakVozila]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Reakcija]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VrstaIncidenta]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VrstaKamere]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VrstaNaplate]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VrstaOdrzavanja]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VrstaPopratnog]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VrstaReakcije]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "fantom.RPPP04",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

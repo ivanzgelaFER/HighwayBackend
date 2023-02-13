@@ -1,0 +1,130 @@
+﻿@model IEnumerable<DionicaViewModel>
+<table class="table table-striped" id="table-dionice">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Naziv","Ulaz", "Izlaz", "Autocesta", "Broj traka", "Zaustavna traka","Dozvola teretnim vozilima", "Otvorena za prolaz",
+            "Godina otvaranja", "Duljina", "Ograničenje brzine" };
+                for (int i = 0; i < nazivi.Length; i++)
+                {
+                    <th class="text-center">
+                        @nazivi[i]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dionica in Model)
+        {
+            <tr>
+                <td class="text-left col-sm-4">
+                    <input type="hidden" name="Dionice.Index" value="@dionica.Id" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].Id" value="@dionica.Id" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].UlaznaPostaja" value="@dionica.UlaznaPostaja" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].IzlaznaPostaja" value="@dionica.IzlaznaPostaja" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].Autocesta" value="@dionica.Autocesta" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].BrojTraka" value="@dionica.BrojTraka" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].ZaustavnaTraka" value="@dionica.ZaustavnaTraka" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].DozvolaTeretnimVozilima" value="@dionica.DozvolaTeretnimVozilima" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].OtvorenZaProlaz" value="@dionica.OtvorenZaProlaz" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].GodinaOtvaranja" value="@dionica.GodinaOtvaranja" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].Duljina" value="@dionica.Duljina" />
+                    <input type="hidden" name="PopratniSadrzaji[@dionica.Id].OgranicenjeBrzine" value="@dionica.OgranicenjeBrzine" />
+                    <input name="Dionice[@dionica.Id].Naziv" value="@dionica.Naziv" />
+                </td>
+                @*
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].Naziv" class="form-control" value="@dionica.Naziv" />
+                </td>
+                *@
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].UlaznaPostaja" class="form-control" value="@dionica.UlaznaPostaja" />
+                </td>
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].IzlaznaPostaja" class="form-control" value="@dionica.IzlaznaPostaja" />
+                </td>
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].Autocesta" class="form-control" value="@dionica.Autocesta" />
+                </td>
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].BrojTraka" class="form-control" value="@dionica.BrojTraka" />
+                </td>
+                <td class="text-center col-sm-1">
+                    @*<input name="Dionice[@dionica.Id].ZaustavaTraka" class="checkbox" value="@dionica.ZaustavnaTraka" />*@
+                    <input name="Dionice[@dionica.Id].ZaustavaTraka" type="checkbox" @(dionica.ZaustavnaTraka ? "checked" : "") value="@dionica.ZaustavnaTraka" />
+                </td>
+                <td class="text-center col-sm-1">
+                   @* <input name="Dionice[@dionica.Id].DozvolaTeretnimVozilima" class="checkbox"  value="@dionica.DozvolaTeretnimVozilima" />*@
+                    <input name="Dionice[@dionica.Id].DozvolaTeretnimVozilima" type="checkbox" @(dionica.DozvolaTeretnimVozilima ? "checked" : "") value="@dionica.DozvolaTeretnimVozilima" />
+                </td>
+                <td class="text-center col-sm-1">
+                    @*<input name="Dionice[@dionica.Id].OtvorenZaProlaz" class="checkbox" value="@dionica.OtvorenZaProlaz" />*@
+                    <input name="Dionice[@dionica.Id].OtvorenZaProlaz" type="checkbox" @(dionica.OtvorenZaProlaz ? "checked" : "") value="@dionica.OtvorenZaProlaz" />
+                </td>
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].GodinaOtvaranja" class="form-control" value="@dionica.GodinaOtvaranja" />
+                </td>
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].Duljina" class="form-control" value="@dionica.Duljina" />
+                </td>
+                <td class="text-center col-sm-1">
+                    <input name="Dionice[@dionica.Id].OgranicenjeBrzine" class="form-control" value="@dionica.OgranicenjeBrzine" />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+                </td>
+               
+            </tr>
+        }
+        
+       
+       <tr>
+            <td class="text-left col-sm-1">
+                <input id="dionica-naziv" type="text" data-autocomplete="autocestaDionice" />
+                <input id="dionica-id" type="hidden" data-autocomplete-placeholder="autocestaDionice" readonly="readonly" />
+            </td>
+
+            <td class="text-center col-sm-1">
+                <input id="dionica-naziv" data-autocomplete-placeholder-naziv="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-ulaznaPostaja" data-autocomplete-placeholder-ulaznaPostaja="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-izlaznaPostaja" data-autocomplete-placeholder-ulaznaPostaja="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-autocesta" data-autocomplete-placeholder-autocesta="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-brojTraka" data-autocomplete-placeholder-brojTraka="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-zaustavnaTraka" class="checkbox"/>
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-dozvolaTeretnimVozilima" class="checkbox" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-otvorenZaProlaz" class="checkbox" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-godinaOtvaranja" data-autocomplete-placeholder-godinaOtvaranja="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-duljina" data-autocomplete-placeholder-duljina="autocestaDionice" />
+            </td>
+            <td class="text-center col-sm-1">
+                <input id="dionica-ogranicenjeBrzine" data-autocomplete-placeholder-ogranicenjeBrzine="autocestaDionice" />
+            </td>
+            <td class="text-left" colspan="3">
+                <button id="dionica-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+

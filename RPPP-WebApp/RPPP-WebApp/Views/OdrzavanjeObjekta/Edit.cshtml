@@ -1,0 +1,75 @@
+﻿@model RPPP_WebApp.Models.OdrzavanjeObjekta
+
+@{
+    ViewBag.Title = "Ažuriranje održavanja objekta";
+}
+
+<form asp-route-id="@Model.Id"
+      asp-route-page="@ViewBag.Page"
+      asp-route-sort="@ViewBag.Sort"
+      asp-route-ascending="@ViewBag.Ascending"
+      method="post">
+    <div class="form-group">
+        <label class="form-label">Vrste održavanja</label>
+        <select class="form-control" asp-for="VrstaId" asp-items="ViewBag.VrstaOdrzavanja">
+            <option disabled selected value="">Odaberite vrstu održavanja</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="VrstaId" class="text-danger"></span></div>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Ime firme</label>
+        <input asp-for="ImeFirme" class="form-control" />
+        <div class="form-text"><span asp-validation-for="ImeFirme" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Radnim danom od</label>
+        <input asp-for="RadnimDanomOd" class="form-control" />
+        <div class="form-text"><span asp-validation-for="RadnimDanomOd" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Radnim danom do</label>
+        <input asp-for="RadnimDanomDo" class="form-control" />
+        <div class="form-text"><span asp-validation-for="RadnimDanomDo" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Vikendima od</label>
+        <input asp-for="VikendimaOd" class="form-control" />
+        <div class="form-text"><span asp-validation-for="VikendimaDo" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Vikendima do</label>
+        <input asp-for="VikendimaDo" class="form-control" />
+        <div class="form-text"><span asp-validation-for="VikendimaDo" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Broj ljudi</label>
+        <input asp-for="BrojLjudi" class="form-control" />
+        <div class="form-text"><span asp-validation-for="BrojLjudi" class="text-danger"></span></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Cijena</label>
+        <input asp-for="Cijena" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Cijena" class="text-danger"></span></div>
+    </div>
+     <div class="mb-3">
+        <label class="form-label">Predviđeno dana</label>
+        <input asp-for="PredvidenoDana" class="form-control" />
+        <div class="form-text"><span asp-validation-for="PredvidenoDana" class="text-danger"></span></div>
+    </div>
+    <div class="form-group">
+        <label class="form-label">Cestivni objekt</label>
+        <select class="form-control" asp-for="CestovniObjektId" asp-items="ViewBag.CestovniObjekti">
+            <option disabled selected value="">Odaberite cestovni objekt</option>
+        </select>
+        <div class="form-text"><span asp-validation-for="VrstaId" class="text-danger"></span></div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Ažuriraj</button>
+        <a asp-action="Index"
+           asp-route-page="@ViewBag.Page"
+           asp-route-sort="@ViewBag.Sort"
+           asp-route-ascending="@ViewBag.Ascending"
+           class="btn btn-secondary">Odustani
+       </a>
+    </div>
+</form>

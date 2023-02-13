@@ -1,0 +1,24 @@
+﻿@model IncidentViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.Opis</td>
+    <td class="text-left">@Model.Datum</td>
+    <td class="text-left">@Model.MeteoroloskiUvjeti</td>
+    <td class="text-left">@Model.StanjeNaCesti</td>
+    <td class="text-left">@Model.Prohodnost</td>
+    <td class="text-left">@Model.Dionica</td>
+    <td class="text-left">@Model.VrstaIncidenta</td>
+    <td>
+        <a class="btn btn-sm edit"
+           hx-get="@Url.Action(nameof(IncidentController.Edit), new { id = Model.Id })"
+           title="Ažuriraj"><i class="fas fa-edit"></i></a>
+    </td>
+    <td>
+        <button class="btn btn-sm btn-danger"
+                hx-confirm="Obrisati incident?"
+                hx-delete="@Url.Action(nameof(IncidentController.Delete), new { id = Model.Id })"
+                title="Obriši">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>

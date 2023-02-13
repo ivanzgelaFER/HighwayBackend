@@ -1,0 +1,22 @@
+﻿@model NaplatnaPostajaViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+    <td class="text-left">@Model.Naziv</td>
+    <td class="text-left">@Model.Autocesta</td>
+    <td class="text-left">@Model.KoordinataX</td>
+    <td class="text-left">@Model.KoordinataY</td>
+    <td class="text-left">@Model.GodinaOtvaranja</td>
+    <td>
+        <a class="btn btn-sm edit"
+           hx-get="@Url.Action(nameof(NaplatnaPostajaController.Edit), new { id = Model.Id })"
+           title="Ažuriraj"><i class="fas fa-edit"></i></a>
+    </td>
+    <td>
+        <button class="btn btn-sm btn-danger"
+                hx-confirm="Obrisati naplatnu postaju?"
+                hx-delete="@Url.Action(nameof(NaplatnaPostajaController.Delete), new { id = Model.Id })"
+                title="Obriši">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    </td>
+</tr>

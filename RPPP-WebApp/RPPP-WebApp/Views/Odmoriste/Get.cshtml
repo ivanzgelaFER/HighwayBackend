@@ -1,0 +1,23 @@
+﻿@model OdmoristeViewModel
+
+<tr hx-target="this" hx-swap="outerHTML">
+  <td class="text-left">@Model.NazivOdmorista</td>
+  <td class="text-left">@Model.Dionica</td>
+  <td class="text-left">@Model.KoordinataX</td>
+    <td class="text-left">@Model.KoordinataY</td>
+    <td class="text-left">@Model.GodinaOtvaranja</td>
+  <td>
+    <a class="btn btn-sm"
+       hx-get="@Url.Action(nameof(OdmoristeController.Edit), new { id = Model.IdOdmorista })"
+       title="Ažuriraj"><i class="fas fa-edit"></i></a>
+  </td>
+  <td>   
+      <button class="btn btn-sm btn-danger"
+              hx-confirm="Obrisati odmorište?"
+              hx-delete="@Url.Action(nameof(OdmoristeController.Delete), new { id = Model.IdOdmorista })"
+              title="Obriši">
+        <i class="fas fa-trash-alt"></i>
+      </button> 
+  </td>
+</tr>
+  

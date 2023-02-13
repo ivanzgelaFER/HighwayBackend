@@ -1,0 +1,99 @@
+﻿@model IEnumerable<OdrzavanjeObjekta>
+
+<table class="table table-striped" id="table-odrzavanja">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Ime firme", "Vrsta", "Radnim danom od", "Radnim danom do",
+                                    "Vikendima od","Vikendima do", "Broj ljudi",
+                                    "Cijena", "Predviđeno dana"};
+                for (int i = 1; i <= nazivi.Length; i++)
+                {
+                    <th class="text-left">
+                        @nazivi[i - 1]
+                    </th>
+                }
+                <th></th>
+            }
+        <tr>
+    </thead>
+    <tbody>
+        @foreach (var odrzavanjeObjekta in Model)
+        {
+            <tr>
+                <td class="text-left">
+                    <input type="hidden" name="OdrzavanjeObjekata.Index" value="@odrzavanjeObjekta.Id" />
+                    <input type="hidden" name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].Id" value="@odrzavanjeObjekta.Id" />
+                    <input type="hidden" name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].VrstaId" value="@odrzavanjeObjekta.VrstaId" /> @*ovo je obavezno jer rusi se sce ako nemas id vrste*@
+                    <input type="hidden" name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].CestovniObjektId" value="@odrzavanjeObjekta.CestovniObjektId" />
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].ImeFirme" value="@odrzavanjeObjekta.ImeFirme" />
+                </td>
+                <td>
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].Vrsta.Naziv" value="@odrzavanjeObjekta.Vrsta.Naziv" readonly="readonly"/>
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].RadnimDanomOd" value="@odrzavanjeObjekta.RadnimDanomOd" />
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].RadnimDanomDo" value="@odrzavanjeObjekta.RadnimDanomDo" />
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].VikendimaOd" value="@odrzavanjeObjekta.VikendimaOd" />
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].VikendimaDo" value="@odrzavanjeObjekta.VikendimaDo" />
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].BrojLjudi" value="@odrzavanjeObjekta.BrojLjudi" />
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].Cijena" value="@odrzavanjeObjekta.Cijena" />
+                </td>
+                <td class="text-left">
+                    <input name="OdrzavanjeObjekata[@odrzavanjeObjekta.Id].PredvidenoDana" value="@odrzavanjeObjekta.PredvidenoDana" />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+                </td>
+            </tr>
+        }
+        
+        <tr>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanje-imeFirme" type="text" data-autocomplete="odrzavanjeObjekta" />
+                <input id="odrzavanje-sifra" type="hidden" data-autocomplete-placeholder="odrzavanjeObjekta" readonly="readonly" />
+                @*
+                <input id="odrzavanje-cestovniObjekt" type="hidden" data-autocomplete-placeholder-cestovniObjektId="odrzavanjeObjekta" />
+                *@
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanje-vrstaId" type="hidden" data-autocomplete-placeholder-vrstaId="odrzavanjeObjekta" />
+                <input id="odrzavanje-vrsta" data-autocomplete-placeholder-vrsta="odrzavanjeObjekta" readonly="readonly"/>
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-radnimDanomOd" data-autocomplete-placeholder-radnimDanomOd="odrzavanjeObjekta" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-radnimDanomDo" data-autocomplete-placeholder-radnimDanomDo="odrzavanjeObjekta" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-vikendimaOd" data-autocomplete-placeholder-vikendimaOd="odrzavanjeObjekta" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-vikendimaDo" data-autocomplete-placeholder-vikendimaDo="odrzavanjeObjekta" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-brojLjudi" data-autocomplete-placeholder-brojLjudi="odrzavanjeObjekta" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-cijena" data-autocomplete-placeholder-cijena="odrzavanjeObjekta" type="text" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="odrzavanjeObjekata-predvidenoDana" data-autocomplete-placeholder-predvidenoDana="odrzavanjeObjekta" />
+            </td>
+            <td>
+                <button id="odrzavanje-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,86 @@
+﻿@model RPPP_WebApp.ViewModels.OdrzavanjeObjekataViewModel
+
+@{
+    ViewBag.Title = "Održavanje objekata";
+    var viewdata = new ViewDataDictionary(ViewData) { { "PagingInfo", Model.PagingInfo } };
+}
+
+<h2>Održavanja objekata</h2>
+
+<a asp-action="Create">Kreiraj novo održavanje cestovnog objekta</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu" class="float-end"></pager>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Vrsta", "Ime firme", "Radnim danom od", "Radnim danom do", "Vikendima od","Vikendima do", "Broj ljudi",
+                                    "Cijena", "Predviđeno dana"};
+                for (int i = 1; i <= nazivi.Length; i++)
+                {
+                    <th>
+                        <a asp-route-sort="@i"
+                           asp-route-page="@Model.PagingInfo.CurrentPage"
+                           asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)"
+                           class="table-column-font-size text-left">
+                           @nazivi[i - 1]
+                        </a>
+                    </th>
+                }
+            }
+            <th></th>
+            <th></th>
+        <tr>
+    </thead>
+    <tbody>
+        @foreach (var odrzavanjeObjekta in Model.OdrzavanjaObjekata)
+        {
+            <tr hx-swap="outerHTML" hx-target="this">
+                <td class="text-left">@odrzavanjeObjekta.Vrsta.Naziv</td>
+                <td class="text-left">@odrzavanjeObjekta.ImeFirme</td>
+                <td class="text-left">@odrzavanjeObjekta.RadnimDanomOd</td>
+                <td class="text-left">@odrzavanjeObjekta.RadnimDanomDo</td>
+                <td class="text-left">@odrzavanjeObjekta.VikendimaOd</td>
+                <td class="text-left">@odrzavanjeObjekta.VikendimaDo</td>
+                <td class="text-left">@odrzavanjeObjekta.BrojLjudi</td>
+                <td class="text-left">@odrzavanjeObjekta.Cijena</td>
+                <td class="text-left">@odrzavanjeObjekta.PredvidenoDana</td>
+                <td>
+                    <a asp-action="Edit"
+                       asp-route-id="@odrzavanjeObjekta.Id"
+                       asp-route-page="@Model.PagingInfo.CurrentPage"
+                       asp-route-sort="@Model.PagingInfo.Sort"
+                       asp-route-ascending="@Model.PagingInfo.Ascending"
+                   class="btn btn-sm"
+                   title="Ažuriraj">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger"
+                        hx-confirm="Obrisati održavanje objekta?"
+                        hx-delete="@Url.Action(nameof(OdrzavanjeObjektaController.Delete), new { id = odrzavanjeObjekta.Id })"
+                        title="Obriši">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+        document.body.addEventListener("htmx:responseError", function (evt) {
+            toastr["error"](evt.detail.error);
+        })
+    </script>
+}

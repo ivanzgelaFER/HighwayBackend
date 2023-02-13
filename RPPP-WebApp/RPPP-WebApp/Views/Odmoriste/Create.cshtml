@@ -1,0 +1,44 @@
+﻿@model Odmoriste
+
+@{
+    ViewBag.Title = "Novo odmorište";
+}
+
+<h2>Unos novog odmorišta</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="Naziv" class="form-label"></label>
+        <input asp-for="Naziv" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Naziv" class="text-danger"></span></div>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="DionicaId" class="form-label"></label>
+        <div class="form-text"><span asp-validation-for="DionicaId" class="text-danger"></span></div>
+        <select class="form-control" asp-for="DionicaId" asp-items="ViewBag.Odmorista">
+            <option disabled selected value="">Odaberite dionicu</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="KoordinataX" class="form-label"></label>
+        <input asp-for="KoordinataX" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="KoordinataY" class="form-label"></label>
+        <input asp-for="KoordinataY" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="GodinaOtvaranja" class="form-label"></label>
+        <input asp-for="GodinaOtvaranja" class="form-control" />
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

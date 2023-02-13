@@ -1,0 +1,153 @@
+﻿@model AutocestaViewModel
+@{
+    ViewBag.Title = "Autocesta: " + @Model.Oznaka;
+}
+
+<div class="container">
+    <div class="row text-center">
+        @*
+        <div class="col-sm-2">
+            @if (ViewBag.Previous != null)
+            {
+                <a class="btn btn-sm btn-primary"
+               asp-action="Show"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               asp-route-filter="@ViewBag.Filter"
+               asp-route-position="@(ViewBag.Position - 1)"
+               asp-route-id="@ViewBag.Previous">
+                    <i class="fas fa-step-backward"></i>
+                </a>
+            }
+        </div>
+        *@
+        <div class="col-sm-8">
+            <h4>
+                @Model.Oznaka -  @Model.Naziv
+            </h4>
+        </div>
+        @*
+        <div class="col-sm-2">
+            @if (ViewBag.Next != null)
+            {
+                <a class="btn btn-sm btn-primary" asp-action="Show"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               asp-route-filter="@ViewBag.Filter"
+               asp-route-position="@(ViewBag.Position + 1)"
+               asp-route-id="@ViewBag.Next">
+                    <i class="fas fa-step-forward"></i>
+                </a>
+            }
+        </div>
+        *@
+    </div>
+
+
+    @*
+    @if (Model.IdPrethAutoceste != null)
+    {
+        <div class="row justify-content-sm-center">
+            <div class="col-sm-2">
+                Prethodni dokument:
+            </div>
+            <div class="col-sm-6">
+                <a asp-action="Show" asp-route-id="@Model.IdPrethAutoceste" target="_blank">@Model.NazPrethodnogDokumenta</a>
+            </div>
+        </div>
+    }*@
+
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-2">
+           Koncesionar: @Model.Koncesionar
+        </div>
+        
+       <div class="col-sm-1 text-right">
+            <a asp-action="Edit"
+               asp-route-id="@Model.Id"
+               target="_blank"
+               class="btn btn-warning btn-sm" title="Ažuriraj"><i class="fas fa-edit"></i></a>
+        </div>
+        <form asp-action="Delete" method="post"
+              asp-route-page="@ViewBag.Page"
+              asp-route-sort="@ViewBag.Sort"
+              asp-route-ascending="@ViewBag.Ascending"
+              asp-route-filter="@ViewBag.Filter">
+            <input type="hidden" name="IdDokumenta" value="@Model.Id" />
+            <button type="submit" class="btn btn-sm btn-danger delete" title="Obriši"><i class="fas fa-trash-alt"></i></button>
+        </form>
+        
+        <div class="col-sm-1 text-left">
+            <a class="btn btn-sm btn-primary cancel"
+               asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               title="Povratak na popis autocesta">
+                <i class="fas fa-undo-alt"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    @{
+                        string[] nazivi = { "Naziv","Ulaz", "Izlaz", "Autocesta", "Broj traka", "Zaustavna traka","Dozvola teretnim vozilima", "Otvorena za prolaz",
+                    "Godina otvaranja", "Duljina", "Ograničenje brzine" };
+                        for (int i = 0; i < nazivi.Length; i++)
+                        {
+                            <th class="text-center">
+                                @nazivi[i]
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dionica in Model.Dionice)
+                {
+                    <tr>
+                        <td class="text-center col-sm-4">
+                            @dionica.Naziv
+                        </td>
+                        <td class="text-center col-sm-1">
+                            @dionica.UlaznaPostaja
+                        </td>
+                        <td class="text-center col-sm-1">
+                            @dionica.IzlaznaPostaja
+                        </td>
+                        <td class="text-center col-sm-1">
+                            @dionica.Autocesta
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.BrojTraka
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.ZaustavnaTraka
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.DozvolaTeretnimVozilima
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.OtvorenZaProlaz
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.GodinaOtvaranja
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.Duljina
+                        </td>
+                        <td class="text-center col-sm-2">
+                            @dionica.OgranicenjeBrzine
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

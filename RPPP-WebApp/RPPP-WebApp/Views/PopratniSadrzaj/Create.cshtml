@@ -1,0 +1,67 @@
+﻿@model PopratniSadrzaj
+
+@{
+    ViewBag.Title = "Novi popratni sadržaj";
+}
+
+<h2>Unos novog popratnog sadržaja</h2>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="All"></div>
+    <div class="mb-3">
+        <label asp-for="Naziv" class="form-label"></label>
+        <input asp-for="Naziv" class="form-control" />
+        <div class="form-text"><span asp-validation-for="Naziv" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="VrstaSadrzajaId" class="form-label"></label>
+        <div class="form-text"><span asp-validation-for="VrstaSadrzajaId" class="text-danger"></span></div>
+        <select class="form-control" asp-for="VrstaSadrzajaId" asp-items="ViewBag.PopratniSadrzaji">
+            <option disabled selected value="">Odaberi</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="OdmoristeId" class="form-label"></label>
+        <div class="form-text"><span asp-validation-for="OdmoristeId" class="text-danger"></span></div>
+        <select class="form-control" asp-for="OdmoristeId" asp-items="ViewBag.Odmorista">
+            <option disabled selected value="">Odaberite odmorište</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="RadnimDanomOd" class="form-label"></label>
+        <input asp-for="RadnimDanomOd" class="form-control" />
+        <div class="form-text"><span asp-validation-for="RadnimDanomOd" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="RadninDanomDo" class="form-label"></label>
+        <input asp-for="RadninDanomDo" class="form-control" />
+        <div class="form-text"><span asp-validation-for="RadninDanomDo" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="VikendimaOd" class="form-label"></label>
+        <input asp-for="VikendimaOd" class="form-control" />
+        <div class="form-text"><span asp-validation-for="VikendimaOd" class="text-danger"></span></div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="VikendimaDo" class="form-label"></label>
+        <input asp-for="VikendimaDo" class="form-control" />
+        <div class="form-text"><span asp-validation-for="VikendimaDo" class="text-danger"></span></div>
+    </div>
+
+
+
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a asp-action="Index" class="btn btn-default">Odustani</a>
+    </div>
+</form>
+
+@section scripts {
+    <partial name="IncludeValidation" />
+}

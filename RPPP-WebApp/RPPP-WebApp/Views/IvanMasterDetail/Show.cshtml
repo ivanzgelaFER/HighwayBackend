@@ -1,0 +1,117 @@
+﻿@model RPPP_WebApp.ViewModels.IvanMasterDetailViewModel
+
+@{
+    ViewBag.Title = "Cestovni objekt: " + @Model.NazivCestovnogObjekta;
+}
+
+    <div class="col-sm-1 text-left">
+        <p>
+            Povratak
+            <a class="btn btn-sm btn-primary cancel"
+               asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               title="Povratak na popis cestovnih objekata">
+                <i class="fas fa-undo-alt"></i>
+            </a>
+        </p>
+    </div>
+    <h2>@Model.NazivCestovnogObjekta</h2>
+    <hr />
+    <div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                @{
+                    string[] naziviMaster = { "Naziv cestovnog objekta","Tip objekta", "Ogranicenje brzine",
+                                              "Broj prometnih traka", "Duljina objekta","Dionica"};
+                    for (int i = 0; i < naziviMaster.Length; i++)
+                    {
+                        <th class="table-column-font-size text-left">
+                            @naziviMaster[i]
+                        </th>
+                    }
+                }
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-left">
+                    @Model.NazivCestovnogObjekta
+                </td>
+                <td class="text-left">
+                    @Model.TipObjekta
+                </td>
+                <td class="text-left">
+                    @Model.OgranicenjeBrzine
+                </td>
+                <td class="text-left">
+                    @Model.BrojPrometnihTraka
+                </td>
+                <td class="text-left">
+                    @Model.DuljinaObjekta
+                </td>
+                <td class="text-left">
+                    @Model.Dionica.Naziv
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <hr />
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    @{
+                        string[] nazivi = { "Vrsta", "Ime firme", "Radnim danom od", "Radnim danom do", "Vikendima od","Vikendima do", "Broj ljudi",
+                                            "Cijena", "Predviđeno dana"};
+                        for (int i = 0; i < nazivi.Length; i++)
+                        {
+                            <th class="table-column-font-size text-left">
+                                @nazivi[i]
+                            </th>
+                        }
+                    }
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var odrzavanjeObjekta in Model.OdrzavanjeObjekata)
+                {
+                    <tr>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.Vrsta.Naziv
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.ImeFirme
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.RadnimDanomOd
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.RadnimDanomDo
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.VikendimaOd
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.VikendimaDo
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.BrojLjudi
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.Cijena
+                        </td>
+                        <td class="text-left">
+                            @odrzavanjeObjekta.PredvidenoDana
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

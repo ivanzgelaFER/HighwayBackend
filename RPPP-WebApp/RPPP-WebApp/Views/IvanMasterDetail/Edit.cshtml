@@ -1,0 +1,114 @@
+﻿@model RPPP_WebApp.ViewModels.IvanMasterDetailViewModel
+
+@{
+    ViewBag.Title = "Ažuriranje cestovnog objekta (master-detail)";
+}
+<div class="container">
+
+    <form asp-route-id="@Model.Id"
+          asp-route-page="@ViewBag.Page"
+          asp-route-sort="@ViewBag.Sort"
+          asp-route-ascending="@ViewBag.Ascending"
+          asp-action="Edit"
+          method="post">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label class="form-label">Naziv cestovnog objekta</label>
+            <input asp-for="NazivCestovnogObjekta" class="form-control" />
+            <div class="form-text"><span asp-validation-for="NazivCestovnogObjekta" class="text-danger"></span></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Dionica</label>
+            <input class="form-control" data-autocomplete="dionica" asp-for="@Model.Dionica.Naziv" />
+            <input type="hidden" asp-for="DionicaId" readonly="readonly" class="form-control" data-autocomplete-placeholder="dionica" />
+            <div class="form-text"><span asp-validation-for="DionicaId" class="text-danger"></span></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tip objekta</label>
+            <input asp-for="TipObjekta" class="form-control" />
+            <div class="form-text"><span asp-validation-for="TipObjekta" class="text-danger"></span></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Ograničenje brzine</label>
+            <input asp-for="OgranicenjeBrzine" class="form-control" />
+            <div class="form-text"><span asp-validation-for="OgranicenjeBrzine" class="text-danger"></span></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Broj prometnih traka</label>
+            <input asp-for="BrojPrometnihTraka" class="form-control" />
+            <div class="form-text"><span asp-validation-for="BrojPrometnihTraka" class="text-danger"></span></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Duljina objekta</label>
+            <input asp-for="DuljinaObjekta" class="form-control" />
+            <div class="form-text"><span asp-validation-for="DuljinaObjekta" class="text-danger"></span></div>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Zaustavni trak</label>
+            <select asp-for="ZaustavniTrak" class="dropdown">
+                <option value="true">Da</option>
+                <option value="false">Ne</option>
+            </select>
+            <div class="form-text"><span asp-validation-for="ZaustavniTrak" class="text-danger"></span></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Dozvola teretnim vozilima</label>
+            <select asp-for="DozvolaTeretnimVozilima" class="dropdown">
+                <option value="">Ne znam</option>
+                <option value="true">Da</option>
+                <option value="false">Ne</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Zanimljivost</label>
+            <input asp-for="Zanimljivost" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Godina izgradnje</label>
+            <input asp-for="GodinaIzgradnje" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Pješačka staza</label>
+            <select asp-for="PjesackaStaza" class="dropdown">
+                <option value="">Ne znam</option>
+                <option value="true">Da</option>
+                <option value="false">Ne</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Naplata prijelaza</label>
+            <select asp-for="NaplataPrijelaza" class="dropdown">
+                <option value="">Ne znam</option>
+                <option value="true">Da</option>
+                <option value="false">Ne</option>
+            </select>
+        </div>
+        <hr/>
+        <h1>Održavanja objekata</h1>
+        <div>
+            <partial name="OdrzavanjeObjekata" model="Model.OdrzavanjeObjekata" />
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" type="submit">Ažuriraj</button>
+            <a asp-action="Index"
+               asp-route-page="@ViewBag.Page"
+               asp-route-sort="@ViewBag.Sort"
+               asp-route-ascending="@ViewBag.Ascending"
+               class="btn btn-secondary">Odustani</a>
+        </div>
+    </form>
+</div>
+
+<partial name="OdrzavanjeObjektaTemplate" />
+
+@section styles{
+    <link rel="stylesheet" href="~/lib/jqueryui/themes/base/jquery-ui.css" />
+}
+
+@section scripts{
+    <partial name="IncludeValidation" />
+    <script src="~/lib/jqueryui/jquery-ui.js"></script>
+    <script src="~/js/autocomplete.js" asp-append-version="true"></script>
+    <script src="~/js/ivanMD.js" asp-append-version="true"></script>
+}

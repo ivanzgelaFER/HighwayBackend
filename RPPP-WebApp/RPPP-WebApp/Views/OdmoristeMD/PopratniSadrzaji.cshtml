@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PopratniSadrzajViewModel>
+<table class="table table-striped" id="table-PopratniSadrzaji">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = {"Naziv", "Vrsta Popratnog Sadržaja", "radnimDanomOd", "radninDanomDo", "vikendimaDo", "vikendimaOd" };
+                for (int i = 0; i < nazivi.Length; i++)
+                {
+                    <th class="text-center">
+                        @nazivi[i]
+                    </th>
+                }
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var popratniSadrzaj in Model)
+        {
+            <tr>
+                <td class="text-left col-sm-4">
+                    <input type="hidden" name="PopratniSadrzaji.Index" value="@popratniSadrzaj.IdPopratnogSadrzaja" />
+                    <input type="hidden" name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].IdPopratnogSadrzaja" value="@popratniSadrzaj.IdPopratnogSadrzaja" />
+                    <input type="hidden" name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].VrstaSadrzajaId" value="@popratniSadrzaj.VrstaSadrzajaId" />
+                    <input type="hidden" name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].OdmoristeId" value="@popratniSadrzaj.OdmoristeId" />
+                    <input name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].NazivPopratnogSadrzaja" value="@popratniSadrzaj.NazivPopratnogSadrzaja" />
+                </td>
+                <td class="text-left col-sm-1">
+                    <input name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].VrstaPopratnog" class="form-control" value="@popratniSadrzaj.VrstaPopratnog" />
+                </td>
+                <td class="text-left col-sm-1">
+                    <input name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].RadnimDanomOd" class="form-control" value="@popratniSadrzaj.RadnimDanomOd" />
+                </td>
+                <td class="text-left col-sm-1">
+                    <input name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].RadninDanomDo" class="form-control" value="@popratniSadrzaj.RadninDanomDo" />
+                </td>
+                <td class="text-left col-sm-1">
+                    <input name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].VikendimaDo" class="form-control" value="@popratniSadrzaj.VikendimaDo" />
+                </td>
+                <td class="text-left col-sm-1">
+                    <input name="PopratniSadrzaji[@popratniSadrzaj.IdPopratnogSadrzaja].VikendimaOd" class="form-control" value="@popratniSadrzaj.VikendimaOd" />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger deleterow" title="Izbaci"><i class="fa fa-minus"></i></button>
+                </td>
+            </tr>
+        }
+        @*<tr>
+            <td class="text-left col-sm-1">
+                <input id="popratniSadrzaj-nazivPopratnogSadrzaja" type="text" data-autocomplete="popratniSadrzaj" />
+                <input id="popratniSadrzaj-sifra" type="hidden" data-autocomplete-placeholder="popratniSadrzaj" readonly="readonly" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="popratniSadrzaj-vrstaPopratnog" data-autocomplete-placeholder-vrstaPopratnog="popratniSadrzaj"/>
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="popratniSadrzaj-radnimDanomOd" type="text" data-autocomplete-placeholder-radnimDanomOd="popratniSadrzaj" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="popratniSadrzaj-radnimDanomDo" type="text" data-autocomplete-placeholder-radnimDanomOd="popratniSadrzaj" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="popratniSadrzaj-vikendimaDo" type="text" data-autocomplete-placeholder-vikendimaDo="popratniSadrzaj" />
+            </td>
+            <td class="text-left col-sm-1">
+                <input id="popratniSadrzaj-vikendimaOd" type="text" data-autocomplete-placeholder-vikendimaOd="popratniSadrzaj" />
+            </td>
+            <td class="text-left" colspan="3">
+                <button id="popratniSadrzaj-dodaj" class="btn btn-sm btn-secondary" title="Dodaj"><i class="fas fa-plus"></i></button>
+            </td>
+        </tr>*@
+    </tbody>
+</table>
+

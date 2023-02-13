@@ -1,0 +1,57 @@
+﻿@model RPPP_WebApp.ViewModels.OdmoristaViewModel
+
+@{
+    ViewBag.Title = "Odmorista";
+}
+
+<h2>Popis Odmorišta</h2>
+
+<a asp-action="Create">Unos novog odmorišta</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-end">
+</pager>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Naziv", "Dionica", "KoordinataX", "KoordinataY", "Godina otvaranja" };
+                for (int i = 1; i <= nazivi.Length; i++)
+                {
+                    <th>
+                        <a asp-route-sort="@i"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)">
+                            @nazivi[i - 1]
+                        </a>
+                    </th>
+                }
+            }
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var odmoriste in Model.Odmorista)
+        {
+            <partial name="Get" model="odmoriste" />
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+        document.body.addEventListener("htmx:responseError", function (evt) {
+            toastr["error"](evt.detail.error);
+        })
+    </script>
+}

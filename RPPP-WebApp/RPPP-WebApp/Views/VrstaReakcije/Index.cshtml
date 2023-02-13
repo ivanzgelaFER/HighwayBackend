@@ -1,0 +1,52 @@
+﻿@model RPPP_WebApp.ViewModels.VrsteReakcijaViewModel
+
+@{
+    ViewBag.Title = "Vrste reakcija";
+}
+
+<h2>Popis vrsta reakcije</h2>
+
+<a asp-action="Create">Unos nove vrste reakcije</a>
+
+<pager page-info="@Model.PagingInfo" page-action="Index" page-title="Unesite željenu stranicu"
+       class="float-end">
+</pager>
+
+<table class="table table-sm table-striped table-hover">
+    <thead>
+        <tr>
+            @{
+                string[] nazivi = { "Naziv", "BrojTelefona"};
+                for (int i = 1; i <= nazivi.Length; i++) {
+                    <th>
+                        <a asp-route-sort="@i"
+                   asp-route-page="@Model.PagingInfo.CurrentPage"
+                   asp-route-ascending="@(Model.PagingInfo.Sort == i ? !Model.PagingInfo.Ascending : true)">
+                            @nazivi[i - 1]
+                        </a>
+                    </th>
+                }
+            }
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vrstaReakcije in Model.VrsteReakcija) {
+            Console.WriteLine(vrstaReakcije);
+            <partial name="Get" model="vrstaReakcije" />
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script src="~/js/pager.js" asp-append-version="true"></script>
+    <script src="~/lib/htmx/htmx.min.js" asp-append-version="true"></script>
+    <partial name="IncludeValidation" />
+
+    <script>
+        document.body.addEventListener("showMessage", function (evt) {
+            toastr[evt.detail.messageType](evt.detail.message);
+        })
+    </script>
+}
